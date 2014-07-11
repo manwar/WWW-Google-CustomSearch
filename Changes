@@ -1,0 +1,42 @@
+Revision history for WWW-Google-CustomSearch
+
+0.12    Sat Mar 29 08:27:13 2014
+        - Added dependency check for LWP::Protocol::https v6.04 (RT: 94194).
+
+0.11    Sat Mar 01 11:12:13 2014
+        - Added link to the Google JSON/Atom Custom Search API in the pod.
+
+0.10    Sun Feb 02 17:15:10 2014
+        - Fixed the issue raised by JACINTA (RT: 92596)
+
+0.09    Fri Sep 14 08:55:10 2012
+        - Fixed the warning when no items found.
+        - Explicitly set the defaults.
+        - Hide the 'alt' attribute from user as it is no longer relevant.
+
+0.08    Fri Sep 14 06:02:22 2012
+        - Added XML::Simple dependency check.
+
+0.07    Thu Sep 13 15:00:00 2012
+        - Simplied the process of fetching search result.
+        - Fixed the handling of 'alt' attribute.
+
+0.06    Wed May 02 11:15:00 2012
+        - Updated pod about how the query parameters can be specified.
+
+0.05    Tue Nov 15 11:12:13 2011
+        - Fixed the issued raised by WILLERT (RT: 72417).
+
+0.04    Mon Sep 12 17:18:19 2011
+        - Fixed the checking of fields 'num' and 'start'.
+        - Added unit test to keep an eye.
+
+0.03    Mon Sep 12 14:15:16 2011
+        - Handle default settings correctly.
+
+0.02    Mon Aug 08 12:44:11 2011
+        - Made Readonly v1.03 as minimum requirement.
+        - Prepared the distribution using the Module::Signature v0.68.
+
+0.01    Wed May 18 19:39:01 2011
+        - First version, released.
