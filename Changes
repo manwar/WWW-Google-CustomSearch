@@ -1,5 +1,9 @@
 Revision history for WWW-Google-CustomSearch
 
+0.13    Sat Jul 19 04:00:00 2014
+        - Restructured code to use Moo.
+        - Making use of common library WWW::Google::UserAgent
+
 0.12    Sat Mar 29 08:27:13 2014
         - Added dependency check for LWP::Protocol::https v6.04 (RT: 94194).
 

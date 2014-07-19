@@ -916,6 +916,7 @@ can be used to probe for further information about the search result.
 
 sub search {
     my ($self, $query) = @_;
+    die "ERROR: Missing query string." unless defined $query;
 
     my $url      = $self->_url($query);
     my $response = $self->_get($url);

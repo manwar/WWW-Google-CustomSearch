@@ -153,7 +153,7 @@ my $SEARCH_FILTER = { 'e' => 1, 'i' => 1 };
 my $SAFETY_LEVEL  = { 'off' => 1, 'medium' => 1, 'high' => 1 };
 
 
-sub check_int                { return defined ($_[0]) || $_[0] =~ /^\d*$/                      };
+sub check_int                { return defined ($_[0]) && $_[0] =~ /^\d+$/                      };
 sub check_str                { return !check_int($_[0])                                        };
 sub check_language           { return exists($LANGUAGE->{lc($_[0])})                           };
 sub check_country_collection { return exists($COUNTRY_COLLECTION->{lc($_[0])})                 };
@@ -166,7 +166,7 @@ sub check_image_size         { return exists($IMAGE_SIZE->{lc($_[0])})          
 sub check_image_type         { return exists($IMAGE_TYPE->{lc($_[0])})                         };
 sub check_rights             { return exists($RIGHTS->{lc($_[0])})                             };
 sub check_search_type        { return exists($SEARCH_TYPE->{lc($_[0])})                        };
-sub check_seearch_filter     { return exists($SEARCH_FILTER->{lc($_[0])})                      };
+sub check_search_filter      { return exists($SEARCH_FILTER->{lc($_[0])})                      };
 sub check_safety_level       { return exists($SAFETY_LEVEL->{lc($_[0])})                       };
 sub check_date_restrict      { return ($_[0] =~ /^[d|w|m|y]\[\d+\]$/i)                         };
 sub check_zero_or_one        { return ($_[0] == 0) || ($_[0] == 1)                             };
@@ -179,14 +179,14 @@ sub check_true_or_false      { return ($_[0] =~ /\btrue\b|\bfalse\b/i)          
 our $FIELDS = {
     'callback'         => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'fields'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
-    'prettyprint'      => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'prettyprint'      => { required => 0, check => sub { check_true_or_false(@_)      }, type => 's' },
     'quotaUser'        => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'userIp'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'c2coff'           => { required => 0, check => sub { check_zero_or_one(@_)        }, type => 'd' },
     'cr'               => { required => 0, check => sub { check_country_collection(@_) }, type => 's' },
    #'cref'             => { required => 0, check => sub { check_str(@_)                }, type => 's' },
    #'cx'               => { required => 0, check => sub { check_str(@_)                }, type => 's' },
-    'dateRestrict'     => { required => 0, check => sub { check_date_strict(@_)        }, type => 's' },
+    'dateRestrict'     => { required => 0, check => sub { check_date_restrict(@_)      }, type => 's' },
     'exactTerms'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'excludeTerms'     => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'fileType'         => { required => 0, check => sub { check_file_type(@_)          }, type => 's' },
@@ -203,7 +203,7 @@ our $FIELDS = {
     'linkSite'         => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'lowRange'         => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
     'lr'               => { required => 0, check => sub { check_language(@_)           }, type => 's' },
-    'num'              => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
+    'num'              => { required => 0, check => sub { check_result_count(@_)       }, type => 'd' },
     'orTerms'          => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'relatedSite'      => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'rights'           => { required => 0, check => sub { check_rights(@_)             }, type => 's' },
@@ -212,7 +212,7 @@ our $FIELDS = {
     'siteSearch'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'siteSearchFilter' => { required => 0, check => sub { check_search_filter(@_)      }, type => 's' },
     'sort'             => { required => 0, check => sub { check_str(@_)                }, type => 's' },
-    'start'            => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
+    'start'            => { required => 0, check => sub { check_start_index(@_)        }, type => 'd' },
 };
 
 =head1 AUTHOR

@@ -12,5 +12,7 @@ MANIFEST.SKIP
 SIGNATURE
 README
 t/00-load.t
+t/01-new.t
+t/02-search.t
 t/manifest.t
 t/pod.t
