@@ -10,7 +10,7 @@ use vars qw(@ISA @EXPORT @EXPORT_OK);
 
 require Exporter;
 @ISA = qw(Exporter);
-@EXPORT_OK = qw(validate $FIELDS);
+@EXPORT_OK = qw($FIELDS);
 
 =head1 NAME
 
@@ -134,87 +134,86 @@ my $FILE_TYPE = {
     '.cpp' => 1, '.cxx'  => 1, '.h'    => 1, '.hpp'  => 1, '.cs'   => 1, '.java' => 1, '.pl'   => 1,
     '.py'  => 1, '.wml'  => 1, '.wap'  => 1, '.xml'  => 1 };
 
-my $COLOR_TYPE = { 'color' => 1, 'gray'  => 1, 'mono'  => 1 };
-
 my $DOMINANT_COLOR = {
     'black'  => 1, 'blue'   => 1, 'brown'  => 1,  'gray'   => 1,  'green'  => 1,  'pink'   => 1,
     'purple' => 1, 'teal'   => 1, 'white'  => 1,  'yellow' => 1 };
 
-my $IMAGE_SIZE = {
-    'huge' => 1, 'icon' => 1, 'large' => 1, 'medium' => 1, 'small' => 1, 'xlarge' => 1, 'xxlarge'=> 1 };
+my $COLOR_TYPE    = { 'color' => 1, 'gray'  => 1, 'mono'  => 1 };
 
-my $IMAGE_TYPE = {
-    'clipart' => 1, 'face' => 1, 'lineart' => 1, 'news' => 1, 'photo' => 1 };
+my $IMAGE_SIZE    = { 'huge' => 1, 'icon' => 1, 'large' => 1, 'medium' => 1, 'small' => 1, 'xlarge' => 1, 'xxlarge'=> 1 };
 
-my $RIGHTS = {
-    'cc_publicdomain'  => 1, 'cc_attribute'  => 1, 'cc_sharealike'  => 1,
-    'cc_noncommercial' => 1, 'cc_nonderived' => 1 };
+my $IMAGE_TYPE    = { 'clipart' => 1, 'face' => 1, 'lineart' => 1, 'news' => 1, 'photo' => 1 };
 
-my $SEARCH_TYPE = { 'image' => 1 };
+my $RIGHTS        = { 'cc_publicdomain'  => 1, 'cc_attribute'  => 1, 'cc_sharealike'  => 1, 'cc_noncommercial' => 1, 'cc_nonderived' => 1 };
+
+my $SEARCH_TYPE   = { 'image' => 1 };
 
 my $SEARCH_FILTER = { 'e' => 1, 'i' => 1 };
 
+my $SAFETY_LEVEL  = { 'off' => 1, 'medium' => 1, 'high' => 1 };
+
+
+sub check_int                { return defined ($_[0]) || $_[0] =~ /^\d*$/                      };
+sub check_str                { return !check_int($_[0])                                        };
+sub check_language           { return exists($LANGUAGE->{lc($_[0])})                           };
+sub check_country_collection { return exists($COUNTRY_COLLECTION->{lc($_[0])})                 };
+sub check_file_type          { return exists($FILE_TYPE->{lc($_[0])})                          };
+sub check_country_code       { return exists($COUNTRY_CODE->{lc($_[0])})                       };
+sub check_interface_language { return exists($INTERFACE_LANGUAGE->{lc($_[0])})                 };
+sub check_color_type         { return exists($COLOR_TYPE->{lc($_[0])})                         };
+sub check_dominant_color     { return exists($DOMINANT_COLOR->{lc($_[0])})                     };
+sub check_image_size         { return exists($IMAGE_SIZE->{lc($_[0])})                         };
+sub check_image_type         { return exists($IMAGE_TYPE->{lc($_[0])})                         };
+sub check_rights             { return exists($RIGHTS->{lc($_[0])})                             };
+sub check_search_type        { return exists($SEARCH_TYPE->{lc($_[0])})                        };
+sub check_seearch_filter     { return exists($SEARCH_FILTER->{lc($_[0])})                      };
+sub check_safety_level       { return exists($SAFETY_LEVEL->{lc($_[0])})                       };
+sub check_date_restrict      { return ($_[0] =~ /^[d|w|m|y]\[\d+\]$/i)                         };
+sub check_zero_or_one        { return ($_[0] == 0) || ($_[0] == 1)                             };
+sub check_start_index        { return ($_[0] =~ /^\d{1,2}$/) && ($_[0] >= 1) && ($_[0] <= 91)  };
+sub check_result_count       { return ($_[0] =~ /^\d{1,2}$/) && ($_[0] >= 1) && ($_[0] <= 10)  };
+sub check_output_format      { return ($_[0] =~ /\bjson\b|\batom\b/i)                          };
+sub check_true_or_false      { return ($_[0] =~ /\btrue\b|\bfalse\b/i)                         };
+
+
 our $FIELDS = {
-    'callback'         => { check => sub { check_str(@_)                }, type => 's' },
-    'fields'           => { check => sub { check_str(@_)                }, type => 's' },
-    'prettyprint'      => { check => sub { check_str(@_)                }, type => 's' },
-    'quotaUser'        => { check => sub { check_str(@_)                }, type => 's' },
-    'userIp'           => { check => sub { check_str(@_)                }, type => 's' },
-    'c2coff'           => { check => sub { check_zero_or_one(@_)        }, type => 'd' },
-    'cr'               => { check => sub { check_country_collection(@_) }, type => 's' },
-    'cref'             => { check => sub { check_str(@_)                }, type => 's' },
-    'cx'               => { check => sub { check_str(@_)                }, type => 's' },
-    'dateRestrict'     => { check => sub { check_date_strict(@_)        }, type => 's' },
-    'exactTerms'       => { check => sub { check_str(@_)                }, type => 's' },
-    'excludeTerms'     => { check => sub { check_str(@_)                }, type => 's' },
-    'fileType'         => { check => sub { check_file_type(@_)          }, type => 's' },
-    'filter'           => { check => sub { check_zero_or_one(@_)        }, type => 'd' },
-    'gl'               => { check => sub { check_country_code(@_)       }, type => 's' },
-    'googlehost'       => { check => sub { check_str(@_)                }, type => 's' },
-    'highRange'        => { check => sub { check_int(@_)                }, type => 'd' },
-    'hl'               => { check => sub { check_interface_language(@_) }, type => 's' },
-    'hq'               => { check => sub { check_str(@_)                }, type => 's' },
-    'imgColorType'     => { check => sub { check_color_type(@_)         }, type => 's' },
-    'imgDominantColor' => { check => sub { check_dominant_color(@_)     }, type => 's' },
-    'imgSize'          => { check => sub { check_image_size(@_)         }, type => 's' },
-    'imgType'          => { check => sub { check_image_type(@_)         }. type => 's' },
-    'linkSite'         => { check => sub { check_str(@_)                }, type => 's' },
-    'lowRange'         => { check => sub { check_int(@_)                }, type => 'd' },
-    'lr'               => { check => sub { check_language(@_)           }, type => 's' },
-    'num'              => { check => sub { check_int(@_)                }, type => 'd' },
-    'orTerms'          => { check => sub { check_str(@_)                }, type => 's' },
-    'relatedSite'      => { check => sub { check_str(@_)                }, type => 's' },
-    'rights'           => { check => sub { check_rights(@_)             }, type => 's' },
-    'safe'             => { check => sub { check_safety_level(@_)       }, type => 's' },
-    'searchType'       => { check => sub { check_search_type(@_)        }, type => 's' },
-    'siteSearch'       => { check => sub { check_str(@_)                }, type => 's' },
-    'siteSearchFilter' => { check => sub { check_search_filter(@_)      }, type => 's' },
-    'sort'             => { check => sub { check_str(@_)                }, type => 's' },
-    'start'            => { check => sub { check_int(@_)                }, type => 'd' },
-    'alt'              => { check => sub { check_output_format(@_)      }, type => 's' }
+    'callback'         => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'fields'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'prettyprint'      => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'quotaUser'        => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'userIp'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'c2coff'           => { required => 0, check => sub { check_zero_or_one(@_)        }, type => 'd' },
+    'cr'               => { required => 0, check => sub { check_country_collection(@_) }, type => 's' },
+   #'cref'             => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+   #'cx'               => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'dateRestrict'     => { required => 0, check => sub { check_date_strict(@_)        }, type => 's' },
+    'exactTerms'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'excludeTerms'     => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'fileType'         => { required => 0, check => sub { check_file_type(@_)          }, type => 's' },
+    'filter'           => { required => 0, check => sub { check_zero_or_one(@_)        }, type => 'd' },
+    'gl'               => { required => 0, check => sub { check_country_code(@_)       }, type => 's' },
+    'googlehost'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'highRange'        => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
+    'hl'               => { required => 0, check => sub { check_interface_language(@_) }, type => 's' },
+    'hq'               => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'imgColorType'     => { required => 0, check => sub { check_color_type(@_)         }, type => 's' },
+    'imgDominantColor' => { required => 0, check => sub { check_dominant_color(@_)     }, type => 's' },
+    'imgSize'          => { required => 0, check => sub { check_image_size(@_)         }, type => 's' },
+    'imgType'          => { required => 0, check => sub { check_image_type(@_)         }, type => 's' },
+    'linkSite'         => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'lowRange'         => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
+    'lr'               => { required => 0, check => sub { check_language(@_)           }, type => 's' },
+    'num'              => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
+    'orTerms'          => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'relatedSite'      => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'rights'           => { required => 0, check => sub { check_rights(@_)             }, type => 's' },
+    'safe'             => { required => 0, check => sub { check_safety_level(@_)       }, type => 's' },
+    'searchType'       => { required => 0, check => sub { check_search_type(@_)        }, type => 's' },
+    'siteSearch'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'siteSearchFilter' => { required => 0, check => sub { check_search_filter(@_)      }, type => 's' },
+    'sort'             => { required => 0, check => sub { check_str(@_)                }, type => 's' },
+    'start'            => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
 };
-
-sub validate {
-    my ($fields, $values) = @_;
-
-    die "ERROR: Missing params list." unless (defined $values);
-
-    die "ERROR: Parameters have to be hash ref" unless (ref($values) eq 'HASH');
-
-    foreach my $field (keys %{$fields}) {
-        die "ERROR: Received invalid param: $field"
-            unless (exists $FIELDS->{$field});
-
-        die "ERROR: Missing mandatory param: $field"
-            if ($fields->{$field} && !exists $values->{$field});
-
-        die "ERROR: Received undefined mandatory param: $field"
-            if ($fields->{$field} && !defined $values->{$field});
-
-	$FIELDS->{$field}->{check}->($values->{$field})
-            if defined $values->{$field};
-    }
-}
 
 =head1 AUTHOR
 

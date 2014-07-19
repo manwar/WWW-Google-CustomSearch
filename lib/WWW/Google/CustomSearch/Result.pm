@@ -1,53 +1,224 @@
 package WWW::Google::CustomSearch::Result;
 
+$WWW::Google::CustomSearch::Result::VERSION = '0.13';
+
 use 5.006;
-use strict;
-use warnings FATAL => 'all';
+use Data::Dumper;
+use WWW::Google::CustomSearch::Item;
+use WWW::Google::CustomSearch::Page;
+use WWW::Google::CustomSearch::Request;
+
+use Moo;
+use namespace::clean;
 
 =head1 NAME
 
-WWW::Google::CustomSearch::Result - The great new WWW::Google::CustomSearch::Result!
+WWW::Google::CustomSearch::Result - Placeholder for Google JSON/Atom Custom Search Result.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.13
 
 =cut
 
-our $VERSION = '0.01';
+has 'api_key' => (is => 'ro',  required => 1);
+has 'raw'     => (is => 'ro',  required => 1);
 
+has 'kind'                  => (is => 'ro');
+has 'formattedTotalResults' => (is => 'ro');
+has 'formattedSearchTime'   => (is => 'ro');
+has 'totalResults'          => (is => 'ro');
+has 'searchTime'            => (is => 'ro');
+has 'url_template'          => (is => 'ro');
+has 'url_type'              => (is => 'ro');
+has 'request'               => (is => 'ro');
+has 'nextPage'              => (is => 'ro');
+has 'previousPage'          => (is => 'ro');
+has 'items'                 => (is => 'ro');
 
-=head1 SYNOPSIS
+sub BUILD {
+    my ($self) = @_;
 
-Quick summary of what the module does.
+    my $raw  = $self->raw;
+    $self->{'kind'} = $raw->{'kind'};
+    $self->{'formattedTotalResults'} = $raw->{'searchInformation'}->{'formattedTotalResults'};
+    $self->{'formattedSearchTime'} = $raw->{'searchInformation'}->{'formattedSearchTime'};
+    $self->{'totalResults'} = $raw->{'searchInformation'}->{'totalResults'};
+    $self->{'searchTime'} = $raw->{'searchInformation'}->{'searchTime'};
 
-Perhaps a little code snippet.
+    $self->{'url_template'} = $raw->{'url'}->{'template'};
+    $self->{'url_type'} = $raw->{'url'}->{'type'};
 
-    use WWW::Google::CustomSearch::Result;
+    $raw->{'queries'}->{'request'}->[0]->{'api_key'} = $self->api_key;
+    $self->{'request'} = WWW::Google::CustomSearch::Request->new($raw->{'queries'}->{'request'}->[0]);
 
-    my $foo = WWW::Google::CustomSearch::Result->new();
-    ...
+    if (defined $raw->{'queries'}->{'nextPage'} && (scalar(@{$raw->{'queries'}->{'nextPage'}}))) {
+        $raw->{'queries'}->{'nextPage'}->[0]->{'api_key'} = $self->api_key;
+        $self->{'nextPage'} = WWW::Google::CustomSearch::Page->new($raw->{'queries'}->{'nextPage'}->[0]);
+    }
 
-=head1 EXPORT
+    if (defined $raw->{'queries'}->{'previousPage'} && (scalar(@{$raw->{'queries'}->{'previousPage'}}))) {
+        $raw->{'queries'}->{'previousPage'}->[0]->{'api_key'} = $self->api_key;
+        $self->{'previousPage'} = WWW::Google::CustomSearch::Page->new($raw->{'queries'}->{'previousPage'}->[0]);
+    }
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
-
-=cut
-
-sub function1 {
+    foreach (@{$raw->{items}}) {
+        push @{$self->{items}}, WWW::Google::CustomSearch::Item->new($_);
+    }
 }
 
-=head2 function2
+=head1 DESCRIPTION
 
-=cut
+Provides the interface to the individual search results based on the search criteria.
 
-sub function2 {
-}
+=head1 METHODS
+
+=head2 kind()
+
+Returns the 'kind' attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "Kind: ", $result->kind, "\n";
+
+=head2 formattedTotalResults()
+
+Returns the 'formattedTotalResults' attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "Formatted Total Results: ", $result->formattedTotalResults, "\n";
+
+=head2 formattedSearchTime()
+
+Returns the 'formattedSearchTime' attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "Formatted Search Time: ", $result->formattedSearchTime, "\n";
+
+=head2 totalResults()
+
+Returns the 'totalResults' attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "Total Results: ", $result->totalResults, "\n";
+
+=head2 searchTime()
+
+Returns the 'searchTime' attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "Search Time: ", $result->searchTime, "\n";
+
+=head2 url_template()
+
+Returns the URL template attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "URL Template: ", $result->url_template, "\n";
+
+=head2 url_type()
+
+Returns the URL Type attribute of the search result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    print "URL Type: ", $result->url_type, "\n";
+
+=head2 request()
+
+Returns the request L<WWW::Google::CustomSearch::Request> object used in the last
+search.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    my $request = $result->request;
+
+=head2 nextPage()
+
+Returns the next page L<WWW::Google::CustomSearch::Page> object which can be used
+to fetch the next page result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    my $page    = $result->nextPage;
+
+=head2 previousPage()
+
+Returns the previous page L<WWW::Google::CustomSearch::Page> object which can  be
+used to fetch the previous page result.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx, start => 2);
+    my $result  = $engine->search("Google");
+    my $page    = $result->previousPage;
+
+=head2 items()
+
+Returns list of search item L<WWW::Google::CustomSearch::Item> based on the search
+criteria.
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key => $api_key, cx => $cx);
+    my $result  = $engine->search("Google");
+    my $items   = $result->items;
 
 =head1 AUTHOR
 
@@ -55,19 +226,16 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-www-google-customsearch at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Google-CustomSearch>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please report  any  bugs  or feature requests to C<bug-www-google-customsearch at
+rt.cpan.org>, or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Google-CustomSearch>.
+I will be notified, and then you'll automatically be notified of progress on your
+bug as I make changes.
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
     perldoc WWW::Google::CustomSearch::Result
-
 
 You can also look for information at:
 
@@ -91,50 +259,43 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =back
 
-
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 LICENSE AND COPYRIGHT
 
 Copyright 2014 Mohammad S Anwar.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of the the Artistic License (2.0). You may obtain a
-copy of the full license at:
+This  program  is  free software; you can redistribute it and/or modify it under
+the  terms  of the the Artistic License (2.0). You may obtain a copy of the full
+license at:
 
 L<http://www.perlfoundation.org/artistic_license_2_0>
 
-Any use, modification, and distribution of the Standard or Modified
-Versions is governed by this Artistic License. By using, modifying or
-distributing the Package, you accept this license. Do not use, modify,
-or distribute the Package, if you do not accept this license.
+Any  use,  modification, and distribution of the Standard or Modified Versions is
+governed by this Artistic License.By using, modifying or distributing the Package,
+you accept this license. Do not use, modify, or distribute the Package, if you do
+not accept this license.
 
-If your Modified Version has been derived from a Modified Version made
-by someone other than you, you are nevertheless required to ensure that
-your Modified Version complies with the requirements of this license.
+If your Modified Version has been derived from a Modified Version made by someone
+other than you,you are nevertheless required to ensure that your Modified Version
+ complies with the requirements of this license.
 
-This license does not grant you the right to use any trademark, service
-mark, tradename, or logo of the Copyright Holder.
+This  license  does  not grant you the right to use any trademark,  service mark,
+tradename, or logo of the Copyright Holder.
 
-This license includes the non-exclusive, worldwide, free-of-charge
-patent license to make, have made, use, offer to sell, sell, import and
-otherwise transfer the Package with respect to any patent claims
-licensable by the Copyright Holder that are necessarily infringed by the
-Package. If you institute patent litigation (including a cross-claim or
-counterclaim) against any party alleging that the Package constitutes
-direct or contributory patent infringement, then this Artistic License
-to you shall terminate on the date that such litigation is filed.
+This license includes the non-exclusive, worldwide, free-of-charge patent license
+to make,  have made, use,  offer to sell, sell, import and otherwise transfer the
+Package with respect to any patent claims licensable by the Copyright Holder that
+are  necessarily  infringed  by  the  Package. If you institute patent litigation
+(including  a  cross-claim  or  counterclaim) against any party alleging that the
+Package constitutes direct or contributory patent infringement,then this Artistic
+License to you shall terminate on the date that such litigation is filed.
 
-Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
-AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
-THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
-YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
-CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
-CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+Disclaimer  of  Warranty:  THE  PACKAGE  IS  PROVIDED BY THE COPYRIGHT HOLDER AND
+CONTRIBUTORS  "AS IS'  AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES. THE IMPLIED
+WARRANTIES    OF   MERCHANTABILITY,   FITNESS   FOR   A   PARTICULAR  PURPOSE, OR
+NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY YOUR LOCAL LAW. UNLESS
+REQUIRED BY LAW, NO COPYRIGHT HOLDER OR CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL,  OR CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE
+OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
