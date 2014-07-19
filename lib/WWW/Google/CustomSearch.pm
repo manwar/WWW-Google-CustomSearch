@@ -7,6 +7,7 @@ use JSON;
 use Data::Dumper;
 
 use WWW::Google::UserAgent;
+use WWW::Google::DataTypes qw($XmlOrJson $TrueOrFalse $ZeroOrOne);
 use WWW::Google::CustomSearch::Params qw($FIELDS);
 use WWW::Google::CustomSearch::Result;
 
@@ -18,10 +19,10 @@ our $BASE_URL = "https://www.googleapis.com/customsearch/v1";
 
 has 'callback'         => (is => 'ro');
 has 'fields'           => (is => 'ro');
-has 'prettyprint'      => (is => 'ro');
+has 'prettyprint'      => (is => 'ro', isa => $TrueOrFalse);
 has 'quotaUser'        => (is => 'ro');
 has 'userIp'           => (is => 'ro');
-has 'c2coff'           => (is => 'ro');
+has 'c2coff'           => (is => 'ro', isa => $ZeroOrOne);
 has 'cr'               => (is => 'ro');
 has 'cref'             => (is => 'ro');
 has 'cx'               => (is => 'ro');
@@ -29,7 +30,7 @@ has 'dateRestrict'     => (is => 'ro');
 has 'exactTerms'       => (is => 'ro');
 has 'excludeTerms'     => (is => 'ro');
 has 'fileType'         => (is => 'ro');
-has 'filter'           => (is => 'ro', default => sub { return 1 });
+has 'filter'           => (is => 'ro', isa => $ZeroOrOne, default => sub { return 1 });
 has 'gl'               => (is => 'ro');
 has 'googlehost'       => (is => 'ro');
 has 'highRange'        => (is => 'ro');
@@ -52,7 +53,7 @@ has 'siteSearch'       => (is => 'ro');
 has 'siteSearchFilter' => (is => 'ro');
 has 'sort'             => (is => 'ro');
 has 'start'            => (is => 'ro', default => sub { return 1 });
-has 'alt'              => (is => 'ro', default => sub { return 'json' });
+has 'alt'              => (is => 'ro', isa => $XmlOrJson, default => sub { return 'json' });
 
 =head1 NAME
 
@@ -891,15 +892,14 @@ this search.  If both are specified, C<cx> is used.
 sub BUILD {
   my ($self) = @_;
 
-  die("ERROR: cx or cref must be specified.\n")
-    unless ($self->cx || $self->cref);
+  die("ERROR: cx or cref must be specified.") unless ($self->cx || $self->cref);
 
   $self->_validate;
 }
 
 =head1 METHODS
 
-=head2 search()
+=head2 search(<query_string>)
 
 Get search result L<WWW::Google::CustomSearch::Result> for the given query, which
 can be used to probe for further information about the search result.
@@ -919,7 +919,7 @@ sub search {
     die "ERROR: Missing query string." unless defined $query;
 
     my $url      = $self->_url($query);
-    my $response = $self->_get($url);
+    my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
     return WWW::Google::CustomSearch::Result->new(raw => $contents, api_key => $self->api_key);
@@ -933,7 +933,7 @@ sub _validate {
     my ($self) = @_;
 
     foreach my $key (keys %{$FIELDS}) {
-        next unless defined $self->{$key};
+        next unless (defined $self->{$key} && exists $FIELDS->{$key}->{check});
 
         die "ERROR: Invalid data for param: $key [$self->{$key}]"
             unless ($FIELDS->{$key}->{check}->($self->{$key}));

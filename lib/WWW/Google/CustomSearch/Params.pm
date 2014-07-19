@@ -169,20 +169,17 @@ sub check_search_type        { return exists($SEARCH_TYPE->{lc($_[0])})         
 sub check_search_filter      { return exists($SEARCH_FILTER->{lc($_[0])})                      };
 sub check_safety_level       { return exists($SAFETY_LEVEL->{lc($_[0])})                       };
 sub check_date_restrict      { return ($_[0] =~ /^[d|w|m|y]\[\d+\]$/i)                         };
-sub check_zero_or_one        { return ($_[0] == 0) || ($_[0] == 1)                             };
 sub check_start_index        { return ($_[0] =~ /^\d{1,2}$/) && ($_[0] >= 1) && ($_[0] <= 91)  };
 sub check_result_count       { return ($_[0] =~ /^\d{1,2}$/) && ($_[0] >= 1) && ($_[0] <= 10)  };
-sub check_output_format      { return ($_[0] =~ /\bjson\b|\batom\b/i)                          };
-sub check_true_or_false      { return ($_[0] =~ /\btrue\b|\bfalse\b/i)                         };
-
 
 our $FIELDS = {
+    'filter'           => { required => 0, type => 'd' },
+    'prettyprint'      => { required => 0, type => 's' },
+    'c2coff'           => { required => 0, type => 'd' },
     'callback'         => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'fields'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
-    'prettyprint'      => { required => 0, check => sub { check_true_or_false(@_)      }, type => 's' },
     'quotaUser'        => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'userIp'           => { required => 0, check => sub { check_str(@_)                }, type => 's' },
-    'c2coff'           => { required => 0, check => sub { check_zero_or_one(@_)        }, type => 'd' },
     'cr'               => { required => 0, check => sub { check_country_collection(@_) }, type => 's' },
    #'cref'             => { required => 0, check => sub { check_str(@_)                }, type => 's' },
    #'cx'               => { required => 0, check => sub { check_str(@_)                }, type => 's' },
@@ -190,7 +187,6 @@ our $FIELDS = {
     'exactTerms'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'excludeTerms'     => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'fileType'         => { required => 0, check => sub { check_file_type(@_)          }, type => 's' },
-    'filter'           => { required => 0, check => sub { check_zero_or_one(@_)        }, type => 'd' },
     'gl'               => { required => 0, check => sub { check_country_code(@_)       }, type => 's' },
     'googlehost'       => { required => 0, check => sub { check_str(@_)                }, type => 's' },
     'highRange'        => { required => 0, check => sub { check_int(@_)                }, type => 'd' },
