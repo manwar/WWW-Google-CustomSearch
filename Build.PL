@@ -12,10 +12,14 @@ my $builder = Module::Build->new(
     configure_requires  => {
         'Module::Build' => 0,
     },
-    build_requires => {
+    build_requires   => {
         'Test::More' => 0,
     },
-    requires => {
+    requires   => {
+        'JSON' => 0,
+        'Moo'  => 0,
+        'namespace::clean'       => 0,
+        'WWW::Google::UserAgent' => 0,
     },
     add_to_cleanup     => [ 'WWW-Google-CustomSearch-*' ],
     create_makefile_pl => 'traditional',

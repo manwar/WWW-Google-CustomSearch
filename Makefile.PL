@@ -18,6 +18,10 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
+        'JSON' => 0,
+        'Moo'  => 0,
+        'namespace::clean'       => 0,
+        'WWW::Google::UserAgent' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'WWW-Google-CustomSearch-*' },
