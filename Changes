@@ -1,5 +1,9 @@
 Revision history for WWW-Google-CustomSearch
 
+0.14    Sun Jul 27 11:27:00 2014
+        - Upgraded to use WWW::Google::UserAgent v0.02
+        - Removed Build.PL
+
 0.13    Sat Jul 19 04:00:00 2014
         - Restructured code to use Moo.
         - Making use of common library WWW::Google::UserAgent

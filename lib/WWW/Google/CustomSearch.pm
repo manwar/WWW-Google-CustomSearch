@@ -1,13 +1,13 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION = '0.13';
+$WWW::Google::CustomSearch::VERSION = '0.14';
 
 use 5.006;
 use JSON;
 use Data::Dumper;
 
 use WWW::Google::UserAgent;
-use WWW::Google::DataTypes qw($XmlOrJson $TrueOrFalse $ZeroOrOne);
+use WWW::Google::UserAgent::DataTypes qw($XmlOrJson $TrueOrFalse $ZeroOrOne);
 use WWW::Google::CustomSearch::Params qw($FIELDS);
 use WWW::Google::CustomSearch::Result;
 
@@ -61,7 +61,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.13
+Version 0.14
 
 =head1 DESCRIPTION
 

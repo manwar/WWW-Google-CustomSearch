@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Page;
 
-$WWW::Google::CustomSearch::Page::VERSION = '0.13';
+$WWW::Google::CustomSearch::Page::VERSION = '0.14';
 
 use 5.006;
 use Data::Dumper;
@@ -25,7 +25,7 @@ WWW::Google::CustomSearch::Page - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.13
+Version 0.14
 
 =head1 DESCRIPTION
 

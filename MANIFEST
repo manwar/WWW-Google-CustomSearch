@@ -1,4 +1,3 @@
-Build.PL
 Changes
 lib/WWW/Google/CustomSearch.pm
 lib/WWW/Google/CustomSearch/Item.pm
