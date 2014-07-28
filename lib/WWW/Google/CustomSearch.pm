@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION = '0.15';
+$WWW::Google::CustomSearch::VERSION = '0.16';
 
 use 5.006;
 use JSON;
@@ -61,7 +61,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.15
+Version 0.16
 
 =head1 DESCRIPTION
 
