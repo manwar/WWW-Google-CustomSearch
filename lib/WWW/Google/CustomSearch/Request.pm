@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Request;
 
-$WWW::Google::CustomSearch::Request::VERSION = '0.16';
+$WWW::Google::CustomSearch::Request::VERSION = '0.17';
 
 use 5.006;
 use Data::Dumper;
@@ -15,7 +15,7 @@ WWW::Google::CustomSearch::Request - Placeholder for Google JSON/Atom Custom Sea
 
 =head1 VERSION
 
-Version 0.16
+Version 0.17
 
 =cut
 

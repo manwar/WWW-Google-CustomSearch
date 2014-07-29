@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Params;
 
-$WWW::Google::CustomSearch::Params::VERSION = '0.16';
+$WWW::Google::CustomSearch::Params::VERSION = '0.17';
 
 use 5.006;
 use strict; use warnings;
@@ -18,7 +18,7 @@ WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google:
 
 =head1 VERSION
 
-Version 0.16
+Version 0.17
 
 =cut
 
