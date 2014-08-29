@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Params;
 
-$WWW::Google::CustomSearch::Params::VERSION = '0.17';
+$WWW::Google::CustomSearch::Params::VERSION = '0.18';
 
 use 5.006;
 use strict; use warnings;
@@ -18,7 +18,7 @@ WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google:
 
 =head1 VERSION
 
-Version 0.17
+Version 0.18
 
 =cut
 
@@ -215,6 +215,10 @@ our $FIELDS = {
 
 Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
+=head1 REPOSITORY
+
+L<https://github.com/Manwar/WWW-Google-CustomSearch>
+
 =head1 BUGS
 
 Please  report  any  bugs or feature requests to C<bug-www-google-customsearch at
@@ -252,7 +256,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2014 Mohammad S Anwar.
+Copyright 2011 - 2014 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full

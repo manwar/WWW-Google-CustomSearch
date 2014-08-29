@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Page;
 
-$WWW::Google::CustomSearch::Page::VERSION = '0.17';
+$WWW::Google::CustomSearch::Page::VERSION = '0.18';
 
 use 5.006;
 use Data::Dumper;
@@ -25,7 +25,7 @@ WWW::Google::CustomSearch::Page - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.17
+Version 0.18
 
 =head1 DESCRIPTION
 
@@ -173,6 +173,10 @@ sub fetch {
 
 Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
+=head1 REPOSITORY
+
+L<https://github.com/Manwar/WWW-Google-CustomSearch>
+
 =head1 BUGS
 
 Please  report any bugs or feature requests  to  C<bug-www-google-customsearch at
@@ -210,7 +214,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2014 Mohammad S Anwar.
+Copyright 2011 - 2014 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full

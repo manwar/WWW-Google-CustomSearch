@@ -1,5 +1,10 @@
 Revision history for WWW-Google-CustomSearch
 
+0.18    Fri Aug 29 10:10:00 2014
+        - Added section "REPOSITORY" to the pod
+        - Added key "META_MERGE" to Makefile.PL
+        - Updated Copyright year details.
+
 0.17    Tue Jul 29 15:08:15 2014
         - Made the pre-requisite WWW::Google::UserAgent v0.07
 

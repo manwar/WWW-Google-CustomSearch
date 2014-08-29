@@ -14,17 +14,17 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 2055859b550a17729f4e99d6ed6263559f1bb612 Changes
+SHA1 bbbb474dbb99e5c659d2e8ec5cac511fbd46d10c Changes
 SHA1 d6fd392e41ecff27465655d126860813fef85e42 MANIFEST
 SHA1 5f29cdcbfacb9c46ac155fff9844aceeb064aef1 MANIFEST.SKIP
-SHA1 f4cf59e3b0ad512763275fd4bd7a2d1487fccff5 Makefile.PL
+SHA1 98a85777ec292acd8863b3742e732f32cf57788b Makefile.PL
 SHA1 96989cb22f9f740c15508ea0f1514501563de387 README
-SHA1 98b2adf6008230ca5b6211996e5e6d38d9610d2e lib/WWW/Google/CustomSearch.pm
-SHA1 7f7d12931b49f72b670a188af7f91686c238ca54 lib/WWW/Google/CustomSearch/Item.pm
-SHA1 ccf755082a8896db312135859d71ca6ba3107863 lib/WWW/Google/CustomSearch/Page.pm
-SHA1 e5db2e18353769ebd269b23776aa061e5f5cf6ff lib/WWW/Google/CustomSearch/Params.pm
-SHA1 d29236599b155d5d089de7a71f3f908adaf71d22 lib/WWW/Google/CustomSearch/Request.pm
-SHA1 2bc8b307be13b1f8e1678e54cb753c866b559327 lib/WWW/Google/CustomSearch/Result.pm
+SHA1 a9c2c85d5857c841a86a61e9bdb3b00cda9707e9 lib/WWW/Google/CustomSearch.pm
+SHA1 1fd0ee269158c95304b9bce337a68eba56431bb8 lib/WWW/Google/CustomSearch/Item.pm
+SHA1 348f4991774e0c3a664895a4903ef451b484de0f lib/WWW/Google/CustomSearch/Page.pm
+SHA1 6cd8c1aebf69ece9a8c8a892f41e625fcbcdb8fd lib/WWW/Google/CustomSearch/Params.pm
+SHA1 1677b77b34043170d7781d41dd7acffa1814762d lib/WWW/Google/CustomSearch/Request.pm
+SHA1 fbd08f3d9cc853d049719b3b3889c77abf36bfca lib/WWW/Google/CustomSearch/Result.pm
 SHA1 1dfea6b791d96c71a217a176c2d3850c5fe4700f t/00-load.t
 SHA1 8550e0a1d5b3d6b6acad2b3ce851f4447a0ddb28 t/01-new.t
 SHA1 87279d985036bdb28ad917ed12419f831fa72d86 t/02-search.t
@@ -33,11 +33,11 @@ SHA1 a572bbed348e70b106f01fa02fee8b8edd6735d5 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iQEcBAEBAgAGBQJT16v0AAoJENoXJXWo7C/pSNMH/2z1jZ3ZZ4IMofNjVjObU1Rs
-WFxKyBSZsQFzKHSvezEjSG0tQdA+cSw8CJsmysG/VY8DEB+4eheCHkvaCAbEqwBX
-LzrOSn1DKl7gIFxJH71PyBGkw6MBREtbFoW15PfEtWi/IS7fGJfX0cZ752dYcDHM
-BzoNrCRdKN1lKrW78CfXvN5EFp895QgImZ3S0EsMwYIzEyqld2F7e9y6a5H86boH
-h3DVfDnRyAEi9yWiy4AHiQTp5Cf4savCYFuRC9HbtyrlbhsqNcom9x2BhTY8nJao
-1FVtbYXaGc+vAfaEt0Rp3j6CnT3RIxibd4I7HmE7PeSKjxY/B+WPUUSge1f+KnY=
-=qEoY
+iQEcBAEBAgAGBQJUAOtvAAoJENoXJXWo7C/ppA8IALnW3LHKcf2eMfVkV8eY6gcT
+nObkmIw94Ew7ccd/9E3QfHEM/MvObGkMtjkMSUuOTWjAbE1g6hQ/jhnI1iUD19GD
+hL0WwOrqHSU8AieLa08/jKFG1TgcX8gjNDjuasTUnmR6ywvjv1c9ld4qjK3hUr05
+2Uepc0btUnb9DrqFVu+cA9Y8ppcAdvXK4d1nal+2XEIGfvo2QkkWxdr2ebe7dkiP
+1BGIlKwMCPU/N0fWNVVI42t4pG5x/QNo5vCaujEFtwNSOJJA7wR3JNy3+uHgqR+T
+BN7O0l7skqMbzd/mr7sarlki7+zrTBozh3rU2qTxm9colfAjIkp+e+mzJDywJiE=
+=AbBg
 -----END PGP SIGNATURE-----
