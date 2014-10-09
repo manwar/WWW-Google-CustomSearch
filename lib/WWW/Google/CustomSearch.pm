@@ -5,6 +5,7 @@ $WWW::Google::CustomSearch::VERSION = '0.18';
 use 5.006;
 use JSON;
 use Data::Dumper;
+use URI;
 
 use WWW::Google::UserAgent;
 use WWW::Google::UserAgent::DataTypes qw($XmlOrJson $TrueOrFalse $ZeroOrOne);
@@ -943,19 +944,25 @@ sub _validate {
 sub _url {
     my ($self, $query) = @_;
 
-    my $url = sprintf("%s?key=%s&q=%s", $BASE_URL, $self->api_key, $query);
+    my $url = URI->new($BASE_URL);
+    my $params = {
+        key => $self->api_key,
+        q => $query,
+    };
+
     if (($self->cx) || ($self->cx && $self->cref)) {
-        $url .= sprintf("&cx=%s", $self->cx);
+        $params->{'cx'} = $self->cx;
     }
     elsif ($self->cref) {
-        $url .= sprintf("&cref=%s", $self->cref);
+        $params->{'cref'} = $self->cref;
     }
 
     foreach my $key (keys %$FIELDS) {
         next unless defined $self->{$key};
-        my $_key = "&$key=%" . $FIELDS->{$key}->{type};
-        $url .= sprintf($_key, $self->{$key}) if defined $self->{$key};
+        $params->{ $FIELDS->{$key}-{type} } = $self->{$key};
     }
+    
+    $url->query_form( $params );
 
     return $url;
 }
