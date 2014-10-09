@@ -957,9 +957,10 @@ sub _url {
         $params->{'cref'} = $self->cref;
     }
 
-    foreach my $key (keys %$FIELDS) {
+    foreach my $key (keys %{$FIELDS}) {
         next unless defined $self->{$key};
-        $params->{ $FIELDS->{$key}-{type} } = $self->{$key};
+        my $value_template = sprintf('%%%s', $FIELDS->{$key}->{type});
+        $params->{ $key } = sprintf($value_template, $self->{$key});
     }
     
     $url->query_form( $params );
