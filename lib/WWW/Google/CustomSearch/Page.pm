@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Page;
 
-$WWW::Google::CustomSearch::Page::VERSION = '0.18';
+$WWW::Google::CustomSearch::Page::VERSION = '0.19';
 
 use 5.006;
 use Data::Dumper;
@@ -25,7 +25,7 @@ WWW::Google::CustomSearch::Page - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.18
+Version 0.19
 
 =head1 DESCRIPTION
 
@@ -176,6 +176,10 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 =head1 REPOSITORY
 
 L<https://github.com/Manwar/WWW-Google-CustomSearch>
+
+=head1 CONTRIBUTORS
+
+David-Kitcher Jones (m4ddav3)
 
 =head1 BUGS
 

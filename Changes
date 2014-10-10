@@ -1,5 +1,10 @@
 Revision history for WWW-Google-CustomSearch
 
+0.19  Fri Oct 10 22:42:23 2014
+      - Merged patch from David-Kitcher Jones about using URI for url encoding.
+      - Added 'URI' as pre-requisite to the Makefile.PL file.
+      - Updated pod documents (fixed code).
+
 0.18  Fri Aug 29 10:10:00 2014
       - Added section "REPOSITORY" to the pod document.
       - Added key "META_MERGE" to Makefile.PL file.
