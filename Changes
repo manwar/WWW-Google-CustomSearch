@@ -1,7 +1,11 @@
 Revision history for WWW-Google-CustomSearch
 
+0.20  Mon Oct 13 20:27:20 2014
+      - Updated contributor names in all pod document.
+      - Minor changes to test script 00-load.t
+
 0.19  Fri Oct 10 22:42:23 2014
-      - Merged patch from David-Kitcher Jones about using URI for url encoding.
+      - Merged patch from David Kitcher-Jones about using URI for url encoding.
       - Added 'URI' as pre-requisite to the Makefile.PL file.
       - Updated pod documents (fixed code).
 

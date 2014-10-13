@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Item;
 
-$WWW::Google::CustomSearch::Item::VERSION = '0.19';
+$WWW::Google::CustomSearch::Item::VERSION = '0.20';
 
 use 5.006;
 use Data::Dumper;
@@ -14,7 +14,7 @@ WWW::Google::CustomSearch::Item - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.19
+Version 0.20
 
 =cut
 
@@ -196,7 +196,7 @@ L<https://github.com/Manwar/WWW-Google-CustomSearch>
 
 =head1 CONTRIBUTORS
 
-David-Kitcher Jones (m4ddav3)
+David Kitcher-Jones (m4ddav3)
 
 =head1 BUGS
 
