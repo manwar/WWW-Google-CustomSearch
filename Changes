@@ -1,5 +1,8 @@
 Revision history for WWW-Google-CustomSearch
 
+0.21  Thu Oct 16 20:33:29 2014
+      - Fixed the syntax error in the code in the pod document of WWW::Google::CustomSearch package.
+
 0.20  Mon Oct 13 20:27:20 2014
       - Updated contributor names in all pod document.
       - Minor changes to test script 00-load.t

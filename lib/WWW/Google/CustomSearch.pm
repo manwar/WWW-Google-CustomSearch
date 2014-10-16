@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION = '0.20';
+$WWW::Google::CustomSearch::VERSION = '0.21';
 
 use 5.006;
 use JSON;
@@ -62,7 +62,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.20
+Version 0.21
 
 =head1 DESCRIPTION
 
@@ -92,7 +92,7 @@ its features might change unexpectedly until it graduates.
     my $result  = $engine->search('Google');
 
     print "Search time: ", $result->searchTime, "\n";
-    foreach $item (@{$result->items}) {
+    foreach my $item (@{$result->items}) {
        print "Snippet: ", $item->snippet, "\n";
     }
 
