@@ -1,6 +1,17 @@
 package WWW::Google::CustomSearch::Params;
 
-$WWW::Google::CustomSearch::Params::VERSION = '0.21';
+$WWW::Google::CustomSearch::Params::VERSION   = '0.22';
+$WWW::Google::CustomSearch::Params::AUTHORITY = 'cpan:MANWAR';
+
+=head1 NAME
+
+WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google::CustomSearch
+
+=head1 VERSION
+
+Version 0.22
+
+=cut
 
 use 5.006;
 use strict; use warnings;
@@ -11,16 +22,6 @@ use vars qw(@ISA @EXPORT @EXPORT_OK);
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT_OK = qw($FIELDS);
-
-=head1 NAME
-
-WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google::CustomSearch
-
-=head1 VERSION
-
-Version 0.21
-
-=cut
 
 my $LANGUAGE = {
     'lang_ar' => 1, 'lang_bg' => 1, 'lang_ca' => 1, 'lang_zh-cn' => 1, 'lang_zh-tw' => 1,
@@ -260,7 +261,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 - 2014 Mohammad S Anwar.
+Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full

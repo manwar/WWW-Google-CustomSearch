@@ -1,6 +1,17 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION = '0.21';
+$WWW::Google::CustomSearch::VERSION   = '0.22';
+$WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
+
+=head1 NAME
+
+WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
+
+=head1 VERSION
+
+Version 0.22
+
+=cut
 
 use 5.006;
 use JSON;
@@ -55,14 +66,6 @@ has 'siteSearchFilter' => (is => 'ro');
 has 'sort'             => (is => 'ro');
 has 'start'            => (is => 'ro', default => sub { return 1 });
 has 'alt'              => (is => 'ro', isa => $XmlOrJson, default => sub { return 'json' });
-
-=head1 NAME
-
-WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
-
-=head1 VERSION
-
-Version 0.21
 
 =head1 DESCRIPTION
 
@@ -1017,7 +1020,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 - 2014 Mohammad S Anwar.
+Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full

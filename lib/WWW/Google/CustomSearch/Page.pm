@@ -1,6 +1,17 @@
 package WWW::Google::CustomSearch::Page;
 
-$WWW::Google::CustomSearch::Page::VERSION = '0.21';
+$WWW::Google::CustomSearch::Page::VERSION   = '0.22';
+$WWW::Google::CustomSearch::Page::AUTHORITY = 'cpan:MANWAR';
+
+=head1 NAME
+
+WWW::Google::CustomSearch::Page - Placeholder for Google JSON/Atom Custom Search Page.
+
+=head1 VERSION
+
+Version 0.22
+
+=cut
 
 use 5.006;
 use Data::Dumper;
@@ -18,14 +29,6 @@ has  'startIndex'     => (is => 'ro', default  => sub { return 1 });
 has  'title'          => (is => 'ro', required => 1);
 has  'totalResults'   => (is => 'ro', required => 1);
 has  'outputEncoding' => (is => 'ro', required => 1);
-
-=head1 NAME
-
-WWW::Google::CustomSearch::Page - Placeholder for Google JSON/Atom Custom Search Page.
-
-=head1 VERSION
-
-Version 0.21
 
 =head1 DESCRIPTION
 
@@ -218,7 +221,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 - 2014 Mohammad S Anwar.
+Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full

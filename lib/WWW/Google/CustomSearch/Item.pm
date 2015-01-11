@@ -1,12 +1,7 @@
 package WWW::Google::CustomSearch::Item;
 
-$WWW::Google::CustomSearch::Item::VERSION = '0.21';
-
-use 5.006;
-use Data::Dumper;
-
-use Moo;
-use namespace::clean;
+$WWW::Google::CustomSearch::Item::VERSION   = '0.22';
+$WWW::Google::CustomSearch::Item::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
 
@@ -14,9 +9,15 @@ WWW::Google::CustomSearch::Item - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.21
+Version 0.22
 
 =cut
+
+use 5.006;
+use Data::Dumper;
+
+use Moo;
+use namespace::clean;
 
 has 'kind'             => (is => 'ro');
 has 'link'             => (is => 'ro');
@@ -235,7 +236,7 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2011 - 2014 Mohammad S Anwar.
+Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
 This  program  is  free software; you can redistribute it and/or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a copy of the full
