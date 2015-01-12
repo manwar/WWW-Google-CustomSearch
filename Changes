@@ -1,5 +1,9 @@
 Revision history for WWW-Google-CustomSearch
 
+0.24  Mon Jan 12 14:40:18 2015
+      - Upgraded to use WWW::Google::UserAgent v0.13.
+      - Updated method search() in the pod document.
+
 0.23  Mon Jan 12 12:30:18 2015
       - Added 'use 5.006;' line to the following test scripts:
         - t/01-new.t

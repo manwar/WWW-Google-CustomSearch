@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION   = '0.23';
+$WWW::Google::CustomSearch::VERSION   = '0.24';
 $WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.23
+Version 0.24
 
 =cut
 
@@ -903,7 +903,7 @@ sub BUILD {
 
 =head1 METHODS
 
-=head2 search(<query_string>)
+=head2 search($query_string)
 
 Get search result L<WWW::Google::CustomSearch::Result> for the given query, which
 can be used to probe for further information about the search result.

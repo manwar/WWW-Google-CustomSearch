@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Item;
 
-$WWW::Google::CustomSearch::Item::VERSION   = '0.23';
+$WWW::Google::CustomSearch::Item::VERSION   = '0.24';
 $WWW::Google::CustomSearch::Item::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch::Item - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.23
+Version 0.24
 
 =cut
 
