@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+use 5.006;
 use strict; use warnings;
 use WWW::Google::CustomSearch;
 use Test::More;
