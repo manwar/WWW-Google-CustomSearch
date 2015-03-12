@@ -1,5 +1,9 @@
 Revision history for WWW-Google-CustomSearch
 
+0.26  THu Mar 12 11:40:00 2015
+      - Updated section "SYNOPSIS" and added more sample code.
+      - Tidied up pod document in general.
+
 0.25  Sun Jan 18 19:35:00 2015
       - Upgraded to use WWW::Google::UserAgent v0.14 as it brings in 'https' support to
         patch issue RT #101571.

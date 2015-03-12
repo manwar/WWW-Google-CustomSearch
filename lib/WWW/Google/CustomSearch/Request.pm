@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Request;
 
-$WWW::Google::CustomSearch::Request::VERSION   = '0.25';
+$WWW::Google::CustomSearch::Request::VERSION   = '0.26';
 $WWW::Google::CustomSearch::Request::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch::Request - Placeholder for Google JSON/Atom Custom Sea
 
 =head1 VERSION
 
-Version 0.25
+Version 0.26
 
 =cut
 
@@ -110,8 +110,8 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
-This  program  is  free software; you can redistribute it and/or modify it under
-the  terms  of the the Artistic License (2.0). You may obtain a copy of the full
+This program  is  free software; you can redistribute it and / or modify it under
+the  terms  of the the Artistic License (2.0). You may obtain a  copy of the full
 license at:
 
 L<http://www.perlfoundation.org/artistic_license_2_0>

@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION   = '0.25';
+$WWW::Google::CustomSearch::VERSION   = '0.26';
 $WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.25
+Version 0.26
 
 =cut
 
@@ -86,6 +86,8 @@ its features might change unexpectedly until it graduates.
 
 =head1 SYNOPSIS
 
+=head2 Single Page Search
+
     use strict; use warnings;
     use WWW::Google::CustomSearch;
 
@@ -97,6 +99,33 @@ its features might change unexpectedly until it graduates.
     print "Search time: ", $result->searchTime, "\n";
     foreach my $item (@{$result->items}) {
        print "Snippet: ", $item->snippet, "\n";
+    }
+
+=head2 Multiple Page Search
+
+    use strict; use warnings;
+    use WWW::Google::CustomSearch;
+
+    my $api_key = 'Your_API_Key';
+    my $cx      = 'Search_Engine_Identifier';
+    my $engine  = WWW::Google::CustomSearch->new(api_key=>$api_key, cx=>$cx);
+    my $result  = $engine->search('Google');
+
+    my $page_count = 5;
+    my $page_no    = 1;
+    print "Result Count: ", $result->totalResults, "\n";
+    while ($page_no <= $page_count) {
+        print "Page [$page_no]:\n\n";
+        foreach my $item (@{$result->items}) {
+            print "Snippet: ", $item->snippet, "\n";
+        }
+        print "----------------------------------\n\n";
+
+        my $page = $result->nextPage;
+        $result  = $page->fetch;
+        $page_no++;
+
+        sleep 10;
     }
 
 See L<WWW::Google::CustomSearch::Result> for further details of the search result.
@@ -1022,8 +1051,8 @@ L<http://search.cpan.org/dist/WWW-Google-CustomSearch/>
 
 Copyright (C) 2011 - 2015 Mohammad S Anwar.
 
-This  program  is  free software; you can redistribute it and/or modify it under
-the  terms  of the the Artistic License (2.0). You may obtain a copy of the full
+This program  is  free software; you can redistribute it and / or modify it under
+the  terms  of the the Artistic License (2.0). You may obtain  a copy of the full
 license at:
 
 L<http://www.perlfoundation.org/artistic_license_2_0>
