@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION   = '0.27';
+$WWW::Google::CustomSearch::VERSION   = '0.28';
 $WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.27
+Version 0.28
 
 =cut
 
@@ -19,7 +19,7 @@ use Data::Dumper;
 use URI;
 
 use WWW::Google::UserAgent;
-use WWW::Google::UserAgent::DataTypes qw($XmlOrJson $TrueOrFalse $ZeroOrOne);
+use WWW::Google::UserAgent::DataTypes -all;
 use WWW::Google::CustomSearch::Params qw($FIELDS);
 use WWW::Google::CustomSearch::Result;
 
@@ -31,10 +31,10 @@ our $BASE_URL = "https://www.googleapis.com/customsearch/v1";
 
 has 'callback'         => (is => 'ro');
 has 'fields'           => (is => 'ro');
-has 'prettyprint'      => (is => 'ro', isa => $TrueOrFalse);
+has 'prettyprint'      => (is => 'ro', isa => TrueFalse);
 has 'quotaUser'        => (is => 'ro');
 has 'userIp'           => (is => 'ro');
-has 'c2coff'           => (is => 'ro', isa => $ZeroOrOne);
+has 'c2coff'           => (is => 'ro', isa => Bool);
 has 'cr'               => (is => 'ro');
 has 'cref'             => (is => 'ro');
 has 'cx'               => (is => 'ro');
@@ -42,7 +42,7 @@ has 'dateRestrict'     => (is => 'ro');
 has 'exactTerms'       => (is => 'ro');
 has 'excludeTerms'     => (is => 'ro');
 has 'fileType'         => (is => 'ro');
-has 'filter'           => (is => 'ro', isa => $ZeroOrOne, default => sub { return 1 });
+has 'filter'           => (is => 'ro', isa => Bool, default => sub { return 1 });
 has 'gl'               => (is => 'ro');
 has 'googlehost'       => (is => 'ro');
 has 'highRange'        => (is => 'ro');
@@ -65,7 +65,7 @@ has 'siteSearch'       => (is => 'ro');
 has 'siteSearchFilter' => (is => 'ro');
 has 'sort'             => (is => 'ro');
 has 'start'            => (is => 'ro', default => sub { return 1 });
-has 'alt'              => (is => 'ro', isa => $XmlOrJson, default => sub { return 'json' });
+has 'alt'              => (is => 'ro', isa => FileType, default => sub { return 'json' });
 
 =head1 DESCRIPTION
 

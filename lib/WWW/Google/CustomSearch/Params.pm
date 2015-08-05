@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Params;
 
-$WWW::Google::CustomSearch::Params::VERSION   = '0.27';
+$WWW::Google::CustomSearch::Params::VERSION   = '0.28';
 $WWW::Google::CustomSearch::Params::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google:
 
 =head1 VERSION
 
-Version 0.27
+Version 0.28
 
 =head1 DESCRIPTION
 

@@ -15,7 +15,7 @@ eval { WWW::Google::CustomSearch->new({api_key=>$api_key}); };
 like($@, qr/ERROR: cx or cref must be specified./);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, prettyprint=>'truue'}); };
-like($@, qr/isa check for "prettyprint" failed/);
+like($@, qr/did not pass type constraint "TrueFalse"/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, lr=>'en'}); };
 like($@, qr/ERROR: Invalid data for param: lr/);
@@ -36,10 +36,10 @@ eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, safe=>'on'}
 like($@, qr/ERROR: Invalid data for param: safe/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, filter=>-1}); };
-like($@, qr/isa check for "filter" failed/);
+like($@, qr/did not pass type constraint "Bool"/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, c2coff=>-1}); };
-like($@, qr/isa check for "c2coff" failed/);
+like($@, qr/did not pass type constraint "Bool"/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, cr=>'countryXYZ'}); };
 like($@, qr/ERROR: Invalid data for param: cr/);
