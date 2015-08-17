@@ -1,5 +1,8 @@
 Revision history for WWW-Google-CustomSearch
 
+0.29  Mon Aug 17 11:00:00 2015
+      - Upgraded to use WWW::Google::UserAgent v0.18.
+
 0.28  Thu Aug 06 12:00:00 2015
       - Upgraded to use WWW::Google::UserAgent v0.17.
 
