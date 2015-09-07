@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION   = '0.29';
+$WWW::Google::CustomSearch::VERSION   = '0.30';
 $WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.29
+Version 0.30
 
 =cut
 
@@ -79,7 +79,8 @@ The JSON / Atom Custom Search  API  requires the use of an API key, which you ca
 get from the Google APIs console. The API provides 100 search queries per day for
 free. If you need more, you may sign up for billing in the console.
 
-For more information about the Google JSON/Atom Custom Search API, please visit https://developers.google.com/custom-search/json-api/v1/reference/cse/list
+The official Google API document can be found L<here|https://developers.google.com/custom-search/json-api/v1/overview>.
+For more information about the Google custom search, please click L<here|https://developers.google.com/custom-search/json-api/v1/reference/cse/list>.
 
 Important:The version v1 of the Google JSON/Atom Custom Search API is in Labs and
 its features might change unexpectedly until it graduates.
