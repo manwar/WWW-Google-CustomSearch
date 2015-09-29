@@ -1,5 +1,10 @@
 Revision history for WWW-Google-CustomSearch
 
+0.31  Tue Sep 29 10:35:00 2015
+      - Added dependency on Types::Standard.
+      - Updated the way WWW::Google::UserAgent::DataType was being imported.
+      - Upgraded to use WWW::Google::UserAgent v0.19.
+
 0.30  Mon Sep 07 11:45:00 2015
       - Added link to the official Google API document.
 
