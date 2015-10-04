@@ -3,7 +3,7 @@
 use 5.006;
 use strict; use warnings;
 use WWW::Google::CustomSearch;
-use Test::More tests => 26;
+use Test::More tests => 25;
 
 my $api_key = 'Your_API_Key';
 my $cx      = 'Search_Engine_Identifier';
@@ -22,9 +22,6 @@ like($@, qr/ERROR: Invalid data for param: lr/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, num=>12}); };
 like($@, qr/ERROR: Invalid data for param: num/);
-
-eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, start=>92}); };
-like($@, qr/ERROR: Invalid data for param: start/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, num=>0}); };
 like($@, qr/ERROR: Invalid data for param: num/);

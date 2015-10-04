@@ -1,5 +1,11 @@
 Revision history for WWW-Google-CustomSearch
 
+0.32  Sun Oct 04 15:50:00 2015
+      - Upgraded to use WWW::Google::UserAgent v0.20.
+      - Added dependency on Type::Tiny instead of Types::Standard.
+      - Removed the upper limit restriction on the field 'start'.
+      - Updated pod document about the restriction on the field 'start'.
+
 0.31  Tue Sep 29 10:35:00 2015
       - Added dependency on Types::Standard.
       - Updated the way WWW::Google::UserAgent::DataType was being imported.

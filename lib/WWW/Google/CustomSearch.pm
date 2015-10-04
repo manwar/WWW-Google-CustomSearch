@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch;
 
-$WWW::Google::CustomSearch::VERSION   = '0.31';
+$WWW::Google::CustomSearch::VERSION   = '0.32';
 $WWW::Google::CustomSearch::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch - Interface to Google JSON/Atom Custom Search.
 
 =head1 VERSION
 
-Version 0.31
+Version 0.32
 
 =cut
 
@@ -938,8 +938,7 @@ this search. If both are specified, C<cx> is used.
     |                  |                                                        |
     | sort             | The sort expression to apply to the results.           |
     |                  |                                                        |
-    | start            | The index of the first result to return.Valid values   |
-    |                  | are between 1 and 91. Default is 1.                    |
+    | start            | The index of the first result to return. Default is 1. |
     +------------------+--------------------------------------------------------+
 
 =cut
