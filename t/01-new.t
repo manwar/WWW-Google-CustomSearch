@@ -3,7 +3,7 @@
 use 5.006;
 use strict; use warnings;
 use WWW::Google::CustomSearch;
-use Test::More tests => 25;
+use Test::More tests => 26;
 
 my $api_key = 'Your_API_Key';
 my $cx      = 'Search_Engine_Identifier';
@@ -43,6 +43,9 @@ like($@, qr/ERROR: Invalid data for param: cr/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, dateRestrict=>'x1'}); };
 like($@, qr/ERROR: Invalid data for param: dateRestrict/);
+
+eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, dateRestrict=>'d3'}); };
+like($@, qr/^$/);
 
 eval { WWW::Google::CustomSearch->new({api_key=>$api_key, cx => $cx, fileType=>'.xxx'}); };
 like($@, qr/ERROR: Invalid data for param: fileType/);

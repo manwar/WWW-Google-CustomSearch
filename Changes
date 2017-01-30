@@ -1,4 +1,7 @@
-Revision history for WWW-Google-CustomSearch
+Revision history for WWW::Google::CustomSearch
+
+0.33  Mon Jan 30 11:30:00 2017
+      - Fixed github issue #2 with regard to param key dateRestrict format. (thanks @electromike)
 
 0.32  Sun Oct 04 15:50:00 2015
       - Upgraded to use WWW::Google::UserAgent v0.20.

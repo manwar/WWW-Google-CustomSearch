@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Params;
 
-$WWW::Google::CustomSearch::Params::VERSION   = '0.32';
+$WWW::Google::CustomSearch::Params::VERSION   = '0.33';
 $WWW::Google::CustomSearch::Params::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch::Params - Placeholders for parameters for WWW::Google:
 
 =head1 VERSION
 
-Version 0.32
+Version 0.33
 
 =head1 DESCRIPTION
 
@@ -173,7 +173,7 @@ sub check_rights             { return exists($RIGHTS->{lc($_[0])})              
 sub check_search_type        { return exists($SEARCH_TYPE->{lc($_[0])})                        };
 sub check_search_filter      { return exists($SEARCH_FILTER->{lc($_[0])})                      };
 sub check_safety_level       { return exists($SAFETY_LEVEL->{lc($_[0])})                       };
-sub check_date_restrict      { return ($_[0] =~ /^[d|w|m|y]\[\d+\]$/i)                         };
+sub check_date_restrict      { return ($_[0] =~ /^[d|w|m|y]\d+$/i)                             };
 sub check_start_index        { return ($_[0] =~ /^\d+$/) && ($_[0] >= 1)                       };
 sub check_result_count       { return ($_[0] =~ /^\d{1,2}$/) && ($_[0] >= 1) && ($_[0] <= 10)  };
 
@@ -222,7 +222,7 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 REPOSITORY
 
-L<https://github.com/Manwar/WWW-Google-CustomSearch>
+L<https://github.com/manwar/WWW-Google-CustomSearch>
 
 =head1 CONTRIBUTORS
 

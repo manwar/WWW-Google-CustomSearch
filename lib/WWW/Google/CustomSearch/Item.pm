@@ -1,6 +1,6 @@
 package WWW::Google::CustomSearch::Item;
 
-$WWW::Google::CustomSearch::Item::VERSION   = '0.32';
+$WWW::Google::CustomSearch::Item::VERSION   = '0.33';
 $WWW::Google::CustomSearch::Item::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ WWW::Google::CustomSearch::Item - Placeholder for Google JSON/Atom Custom Search
 
 =head1 VERSION
 
-Version 0.32
+Version 0.33
 
 =cut
 
@@ -193,7 +193,7 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 REPOSITORY
 
-L<https://github.com/Manwar/WWW-Google-CustomSearch>
+L<https://github.com/manwar/WWW-Google-CustomSearch>
 
 =head1 CONTRIBUTORS
 
